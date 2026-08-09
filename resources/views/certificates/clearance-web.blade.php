@@ -264,7 +264,7 @@
                                         <img style=" width:125px;height:125px;text-align:center " src="{{ asset('img/logo.png') }}" />
                                     </div>
                                     <div style="width: 30%; float: left; margin-top: 10px; text-align: center" class="row">
-                                        <img id="imgid2" src="{{ asset('certificates/qr.png') }}" width="125" height="125" />
+                                        <img id="imgid2" src="{{ asset('certificates/qr.png') }}?v={{ is_file(public_path('certificates/qr.png')) ? filemtime(public_path('certificates/qr.png')) : time() }}" width="125" height="125" />
                                     </div>
                                 </div>
                                 <br />

@@ -44,16 +44,20 @@
     </style>
 </head>
 <body>
+    @php
+        $pdfPath = public_path('certificates/sample-clearance.pdf');
+        $pdfUrl = asset('certificates/sample-clearance.pdf').'?v='.(is_file($pdfPath) ? filemtime($pdfPath) : time());
+    @endphp
     <div class="bar">
         <span>نسخة مطابقة 100% للملف الأصلي (نفس الخطوط والتصميم)</span>
         <div class="actions">
-            <a href="{{ asset('certificates/sample-clearance.pdf') }}" target="_blank" rel="noopener">فتح PDF</a>
-            <a href="{{ asset('certificates/sample-clearance.pdf') }}" download="شهادة-مخالصة-سامبل.pdf">تحميل</a>
+            <a href="{{ $pdfUrl }}" target="_blank" rel="noopener">فتح PDF</a>
+            <a href="{{ $pdfUrl }}" download="شهادة-مخالصة-سامبل.pdf">تحميل</a>
         </div>
     </div>
     <iframe
         title="شهادة مخالصة"
-        src="{{ asset('certificates/sample-clearance.pdf') }}#toolbar=1&navpanes=0&view=FitH"
+        src="{{ $pdfUrl }}#toolbar=1&navpanes=0&view=FitH"
     ></iframe>
 </body>
 </html>
