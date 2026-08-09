@@ -1,0 +1,136 @@
+/* Add here all your AR css styles (customizations) */
+
+html, body, *,
+ h1, h2, h3, h4, h5, h6 {
+	font-family: 'DroidArabicKufi';
+}
+.link-list li i {
+	float: left;
+}
+/*.fa-angle-right:before {
+    content: "\f105";
+}*/
+.easy-block-v3 i {
+    float: right;
+}
+.easy-block-v3 {
+    text-align: right;
+}
+.blog-twitter .blog-twitter-inner:before {
+	border-left: 0 solid transparent;
+    border-right: 15px solid transparent;
+    border-right-style: inset;
+	border-left-style: none;
+}
+.blog-twitter .blog-twitter-inner:after, .blog-twitter .blog-twitter-inner:before {
+	left: 0;	
+	right: inherit;
+}
+.blog-twitter .blog-twitter-inner:after {
+	border-left: 15px solid transparent;
+    border-right: 0px solid transparent;
+}
+.blog-twitter .blog-twitter-inner a {
+	color: #555;
+}
+.blog-twitter .blog-twitter-inner a:hover {
+	color: #1268B3;
+	text-decoration: none;
+}
+
+.carousel-indicators {
+	padding-right: 0;
+}
+
+.modal-title {
+	text-align: right;
+}
+
+/************************************/
+.sky-form {
+	border-color: #ccc;
+}
+.sky-form .inline-group {
+    margin: 0;
+}
+.sky-form .inline-group .radio, .sky-form .inline-group .checkbox {
+    float: right;
+    margin-left: 30px;
+	margin-right: auto;
+}
+/*--------------------------------------------------
+    [Form]
+----------------------------------------------------*/
+.sky-form .label {
+	text-align: right;
+}
+.sky-form .label samp {
+	margin-left: auto;
+	margin-right: 3px;
+}
+.sidebar-nav-v1 li a {
+	padding: 8px 10px 8px 30px;
+}
+.sidebar-nav-v1 li ul a {
+	padding: 6px 17px 6px 30px;
+}
+.sidebar-nav-v1 li i,
+ .who li i,
+  .list-unstyled strong {
+	margin-right: auto;
+	margin-left: 3px;	
+}
+.list-unstyled strong { 
+	float: right;
+}
+.list-toggle:after {
+	right: auto;
+	left: 10px;
+}
+.sky-form .col {
+	float: right;
+}
+.sky-form .checkbox input + i:after {
+	left: auto;
+	right: 0;
+}
+.sky-form .checkbox input + i:after {
+	left: auto;
+	right: -1px;
+}
+.sky-form .radio, .sky-form .checkbox {
+	padding-left: 0;
+	padding-right: 27px;		/**********************POSSESSION***************************/
+}
+.sky-form .radio input, .sky-form .checkbox input {
+    /*right: -9999px;*/		/**********************POSSESSION***************************/
+	left: auto; 
+}
+.checkbox input[type=checkbox],
+ .checkbox-inline input[type=checkbox],
+  .radio input[type=radio],
+   .radio-inline input[type=radio] {
+    margin-left: 0;
+    margin-right: -20px;
+	margin-top: 7px;
+    opacity: 0;
+    z-index: 1;
+	cursor: pointer;
+}
+.sky-form .radio i,
+ .sky-form .checkbox i {
+	left: auto;
+	right: 5px;
+}
+/*--------------------------------------------------
+    [Checkbox]
+----------------------------------------------------*/
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox],
+ .radio input[type=radio], .radio-inline input[type=radio] {
+	margin-left: 0;
+	margin-right: -20px;
+}
+.checkbox label, .radio label {
+	padding-left: 0;
+	padding-right: 20px;
+}

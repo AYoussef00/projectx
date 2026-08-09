@@ -1,0 +1,12 @@
+@font-face{
+	font-family: 'DroidNaskh-Bold';
+	src: url(../DroidNaskh-Bold.ttf) format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face{
+	font-family: 'DroidNaskh-Regular';
+	src: url(../DroidNaskh-Regular.ttf) format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
