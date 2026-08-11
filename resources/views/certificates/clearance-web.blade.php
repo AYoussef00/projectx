@@ -295,7 +295,7 @@
                                         <span style="margin :0px 10px 0px 10px">ايماء الي الطلب المقدم من جهة التنفيذ</span>
                                     </div>
                                     <div style="width:67% ; float:right ;text-align:right" class="col-md-3">
-                                        <span id="C_FullName">الازهر لمواد البناء وحديد التسليح والمقاولات العامة</span>
+                                        <span id="C_FullName">مكه للمقاولات العامة والتجارة</span>
                                     </div>
                                 </div>
                                 <br />
@@ -304,22 +304,22 @@
                                         <span style="margin :0px 10px 0px 10px">و المسند اليها عملية</span>
                                     </div>
                                     <div style="width:67% ; float:right ;text-align:right" class="col-md-3">
-                                        <span id="C_OperationDescription">انشاء عدد (1) عمارة سكنية (ارضي + 3 متكرر) بمدينة رفح الجديدة (المرحلة الثامنة والعشرون)</span>
+                                        <span id="C_OperationDescription">إنشاء سور خرساني املس بسن منشار بارتفاع ٨ متر و طول ( 1041,9 ) م.ط وعدد ١٠ برج مراقبة صغير و برج مراقبة كبير بمجمع الصناعات بالجفجافه</span>
                                     </div>
                                 </div>
                                 <br />
                                 <div style="width:100% ; float:right ;margin:7px 0px 8px 0px" class="row">
                                     <div style="width: 25%; float: right; text-align: right " class="col-md-3"><span>عقد رقم</span></div>
-                                    <div style="width:25% ; float:right ;text-align:right" class="col-md-3"><span id="C_OperationCode">1658/2021/2022</span></div>
+                                    <div style="width:25% ; float:right ;text-align:right" class="col-md-3"><span id="C_OperationCode">1732</span></div>
                                     <div style="width: 25%; float: right; text-align: right " class="col-md-3"><span>بقيمة اجمالية</span></div>
                                     <div style="width:25% ; float:right ;text-align:right" class="col-md-3"><span id="C_TotalContractValue"></span></div>
                                 </div>
                                 <br />
                                 <div style="width:100% ; float:right ;margin:7px 0px 8px 0px" class="row">
                                     <div style="width: 25%; float: right; text-align: right " class="col-md-3"><span>عن مستخلص </span></div>
-                                    <div style="width:25% ; float:right ;text-align:right" class="col-md-3"><span id="C_ExtractCode">1489218</span></div>
+                                    <div style="width:25% ; float:right ;text-align:right" class="col-md-3"><span id="C_ExtractCode">1532469</span></div>
                                     <div style="width: 25%; float: right; text-align: right " class="col-md-3"><span>بقيمة </span></div>
-                                    <div style="width:25% ; float:right ;text-align:right" class="col-md-3"><span style="border:1px solid #000000" id="C_ExtractTotalValue">10391089</span></div>
+                                    <div style="width:25% ; float:right ;text-align:right" class="col-md-3"><span style="border:1px solid #000000" id="C_ExtractTotalValue">54922975</span></div>
                                 </div>
                                 <br />
                                 <div style="width:100% ; float:right ;margin:7px 0px 8px 0px" class="row">
@@ -330,9 +330,9 @@
                                     <div style="width: 16%; float: right; text-align: right " class="col-md-3"><span>نوع المخالصة </span></div>
                                     <div style="width:16% ; float:right ;text-align:right" class="col-md-3"><span id="C_ExtractTypeName">ختامي</span></div>
                                     <div style="width: 17%; float: right; text-align: right " class="col-md-3"><span>في مدة من  </span></div>
-                                    <div style="width:16% ; float:right ;text-align:right" class="col-md-3"><span id="C_ExtractStartDate">2022-03-20</span></div>
+                                    <div style="width:16% ; float:right ;text-align:right" class="col-md-3"><span id="C_ExtractStartDate">2022-07-26</span></div>
                                     <div style="width: 16%; float: right; text-align: right " class="col-md-3"><span>الي </span></div>
-                                    <div style="width:16% ; float:right ;text-align:right" class="col-md-3"><span id="C_ExtractEndDate">2023-03-17</span></div>
+                                    <div style="width:16% ; float:right ;text-align:right" class="col-md-3"><span id="C_ExtractEndDate">2022-11-26</span></div>
                                 </div>
                                 <br /><br /><br />
                                 <hr />
@@ -345,15 +345,15 @@
                                 <br />
                                 <div style="width:100% ; float:right;margin:7px 0px 8px 0px" class="row">
                                     <div style="width: 25%; float: right; text-align: right " class="col-md-3"><span style="margin :0px 10px 0px 10px">بايصال رقم</span></div>
-                                    <div style="width:25% ; float:right ;text-align:right" class="col-md-3"><span id="C_ReceiptNo">20251231074798</span></div>
+                                    <div style="width:25% ; float:right ;text-align:right" class="col-md-3"><span id="C_ReceiptNo">20263651249632</span></div>
                                     <div style="width: 25%; float: right; text-align: right " class="col-md-3"><span>بحساب البريد المصري رقم </span></div>
                                     <div style="width:25% ; float:right ;text-align:right" class="col-md-3"><span id="C_AccountNumber">0130213001028818</span></div>
                                 </div>
                                 <br />
                                 <div style="width:100% ; float:right;margin:7px 0px 8px 0px" class="row">
                                     <div style="width: 15%; float: right; text-align: right " class="col-md-3"><span style="margin :0px 10px 0px 10px">مبلغ وقدره</span></div>
-                                    <div style="width:20% ; float:right ;text-align:right" class="col-md-3"><span style="border:1px solid #000000" id="C_RequiredTotalValue">35685</span></div>
-                                    <div style="width:65% ; float:right ;text-align:right" class="col-md-3"><span style="border:1px solid #000000" id="C_tafeet">فقط خمسة و ثلاثون ألفًا و ستمائة و خمس و ثمانون جنيها مصري لا غير.</span></div>
+                                    <div style="width:20% ; float:right ;text-align:right" class="col-md-3"><span style="border:1px solid #000000" id="C_RequiredTotalValue">247153</span></div>
+                                    <div style="width:65% ; float:right ;text-align:right" class="col-md-3"><span style="border:1px solid #000000" id="C_tafeet">مائتان سبعة واربعين الفا ومائة ثلاثة وسبعين جنيها مصري لا غير</span></div>
                                 </div>
                                 <br />
                                 <div style="width:100% ; float:right;margin:7px 0px 8px 0px" class="row">
@@ -370,14 +370,14 @@
                                     <div style="width: 17%; float: right; text-align: right " class="col-md-3"><span>كود العملية بالوزارة </span></div>
                                     <div style="width:16% ; float:right ;text-align:right" class="col-md-3"><span id="C_OperationId">335844</span></div>
                                     <div style="width: 16%; float: right; text-align: right " class="col-md-3"><span>رقم المخالصة </span></div>
-                                    <div style="width:16% ; float:right ;text-align:right" class="col-md-3"><span id="C_ExtractCode_p">1489218</span></div>
+                                    <div style="width:16% ; float:right ;text-align:right" class="col-md-3"><span id="C_ExtractCode_p">1532469</span></div>
                                     <div style="width: 16%; float: right; text-align: right " class="col-md-3"><span>كلمة المرور </span></div>
                                     <div style="width:16% ; float:right ;text-align:right" class="col-md-3"><span id="C_PrintCode">a18a7f495c</span></div>
                                 </div>
                                 <br />
                                 <div style="width:100% ; float:right;margin:7px 0px 8px 0px" class="row">
                                     <div style="width: 25%; float: right; text-align: right " class="col-md-3"><span>تم اعتماد المخالصة فى تاريخ</span></div>
-                                    <div style="width: 25%; float: right; text-align: right " class="col-md-3"><span id="C_MovementDate">2026-01-04</span></div>
+                                    <div style="width: 25%; float: right; text-align: right " class="col-md-3"><span id="C_MovementDate">2026-08-22</span></div>
                                 </div>
                                 <br /><br />
                                 <div style="width:100% ; float:right ;margin:7px 0px 8px 0px" class="row">
