@@ -311,9 +311,11 @@
                                 <div style="width:100% ; float:right ;margin:7px 0px 8px 0px" class="row">
                                     <div style="width: 25%; float: right; text-align: right " class="col-md-3">
                                         <div><span>عقد رقم</span></div>
+                                    </div>
+                                    <div style="width:25% ; float:right ;text-align:right" class="col-md-3">
+                                        <div><span id="C_OperationWorks">اعمال/ 15740</span></div>
                                         <div><span id="C_OperationCode">261008004796</span></div>
                                     </div>
-                                    <div style="width:25% ; float:right ;text-align:right" class="col-md-3"><span id="C_OperationWorks">اعمال/ 15740</span></div>
                                     <div style="width: 25%; float: right; text-align: right " class="col-md-3"><span>بقيمة اجمالية</span></div>
                                     <div style="width:25% ; float:right ;text-align:right" class="col-md-3"><span id="C_TotalContractValue"></span></div>
                                 </div>
@@ -355,8 +357,8 @@
                                 <br />
                                 <div style="width:100% ; float:right;margin:7px 0px 8px 0px" class="row">
                                     <div style="width: 15%; float: right; text-align: right " class="col-md-3"><span style="margin :0px 10px 0px 10px">مبلغ وقدره</span></div>
-                                    <div style="width:20% ; float:right ;text-align:right" class="col-md-3"><span style="border:1px solid #000000" id="C_RequiredTotalValue">26140</span></div>
-                                    <div style="width:65% ; float:right ;text-align:right" class="col-md-3"><span style="border:1px solid #000000" id="C_tafeet">فقط ستة وعشرون الفا ومائة وأربعون جنيها مصري لا غير</span></div>
+                                    <div style="width:20% ; float:right ;text-align:right" class="col-md-3"><span style="border:1px solid #000000" id="C_RequiredTotalValue">25413</span></div>
+                                    <div style="width:65% ; float:right ;text-align:right" class="col-md-3"><span style="border:1px solid #000000" id="C_tafeet">فقط خمسة وعشرون الفا وربعمائة وثلاثة عشر جنيها مصري لا غير</span></div>
                                 </div>
                                 <br />
                                 <div style="width:100% ; float:right;margin:7px 0px 8px 0px" class="row">
