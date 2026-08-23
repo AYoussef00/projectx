@@ -392,7 +392,7 @@
                                 </div>
                                 <div style="width:100% ; float:right ;margin:7px 0px 8px 0px" class="row">
                                     <div style="width: 90%; float: right; text-align: right " class="col-md-3">
-                                        <span> https://inform.menpowerr-eg.co </span>
+                                        <span> https://inform.manpower.gov.eg/ </span>
                                     </div>
                                 </div>
                             </div>
