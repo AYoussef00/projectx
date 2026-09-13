@@ -41,6 +41,7 @@ defineProps<{
 
 const page = usePage();
 const success = computed(() => (page.props.flash as { success?: string } | undefined)?.success);
+const error = computed(() => (page.props.flash as { error?: string } | undefined)?.error);
 
 const fieldClass =
     'border-input focus-visible:border-ring focus-visible:ring-ring/50 mt-1 w-full rounded-md border bg-transparent px-3 py-2 text-sm shadow-xs outline-none focus-visible:ring-[3px]';
@@ -64,6 +65,13 @@ const fieldClass =
             class="rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800"
         >
             {{ success }}
+        </div>
+
+        <div
+            v-if="error"
+            class="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900"
+        >
+            {{ error }}
         </div>
 
         <Form

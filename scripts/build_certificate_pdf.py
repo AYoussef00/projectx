@@ -19,9 +19,28 @@ SRC = ROOT / "storage/app/sample-ref/source.pdf"
 OUT = ROOT / "public/certificates/sample-clearance.pdf"
 QR_PATH = ROOT / "public/certificates/qr.png"
 LOGO_PATH = ROOT / "public/img/logo.png"
-FONT = "/System/Library/Fonts/Supplemental/Times New Roman.ttf"
+FONT_CANDIDATES = [
+    "/System/Library/Fonts/Supplemental/Times New Roman.ttf",  # macOS
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",  # Ubuntu
+    "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf",
+    "/usr/share/fonts/truetype/freefont/FreeSerif.ttf",
+    "/usr/share/fonts/truetype/noto/NotoNaskhArabic-Regular.ttf",
+    "/usr/share/fonts/truetype/noto/NotoSansArabic-Regular.ttf",
+]
+
+
+def resolve_font() -> str:
+    for path in FONT_CANDIDATES:
+        if Path(path).is_file():
+            return path
+    raise FileNotFoundError(
+        "No suitable TTF font found. Install one of: fonts-dejavu-core, fonts-liberation, fonts-noto-core"
+    )
+
+
 FS = 9.12
 EXTRACT_SHIFT = 12.0
+FONT = resolve_font()
 
 
 def ar(text: str) -> str:

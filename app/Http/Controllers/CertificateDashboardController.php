@@ -82,8 +82,14 @@ class CertificateDashboardController extends Controller
             'approval_date' => $validated['approval_date'],
         ]);
 
-        $pdfBuilder->rebuild();
+        $result = $pdfBuilder->rebuild();
 
-        return back()->with('success', 'تم تحديث بيانات الشهادة في الصفحة الرئيسية وملف الـ PDF.');
+        if ($result['ok']) {
+            return back()->with('success', $result['message']);
+        }
+
+        return back()
+            ->with('success', 'تم حفظ بيانات الصفحة الرئيسية.')
+            ->with('error', $result['message']);
     }
 }
