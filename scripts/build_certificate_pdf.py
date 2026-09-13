@@ -19,26 +19,31 @@ SRC = ROOT / "storage/app/sample-ref/source.pdf"
 OUT = ROOT / "public/certificates/sample-clearance.pdf"
 QR_PATH = ROOT / "public/certificates/qr.png"
 LOGO_PATH = ROOT / "public/img/logo.png"
+# Source PDF body text is TimesNewRomanPSMT @ 9.12pt — match that exactly.
 FONT_CANDIDATES = [
-    "/System/Library/Fonts/Supplemental/Times New Roman.ttf",  # macOS
-    "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",  # Ubuntu
-    "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf",
-    "/usr/share/fonts/truetype/freefont/FreeSerif.ttf",
-    "/usr/share/fonts/truetype/noto/NotoNaskhArabic-Regular.ttf",
-    "/usr/share/fonts/truetype/noto/NotoSansArabic-Regular.ttf",
+    ROOT / "resources/fonts/TimesNewRoman.ttf",  # shipped with project
+    Path("/usr/share/fonts/truetype/msttcorefonts/Times_New_Roman.ttf"),  # Ubuntu mscorefonts
+    Path("/usr/share/fonts/truetype/msttcorefonts/times.ttf"),
+    Path("/System/Library/Fonts/Supplemental/Times New Roman.ttf"),  # macOS
+    Path("/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf"),
+    Path("/usr/share/fonts/truetype/freefont/FreeSerif.ttf"),
+    Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"),
+    Path("/usr/share/fonts/truetype/noto/NotoNaskhArabic-Regular.ttf"),
+    Path("/usr/share/fonts/truetype/noto/NotoSansArabic-Regular.ttf"),
 ]
 
 
-def resolve_font() -> str:
+def resolve_font() -> Path:
     for path in FONT_CANDIDATES:
         if Path(path).is_file():
-            return path
+            return Path(path)
     raise FileNotFoundError(
-        "No suitable TTF font found. Install one of: fonts-dejavu-core, fonts-liberation, fonts-noto-core"
+        "Times New Roman not found. Expected resources/fonts/TimesNewRoman.ttf "
+        "or install ttf-mscorefonts-installer / fonts-liberation"
     )
 
 
-FS = 9.12
+FS = 9.12  # matches source PDF body spans
 EXTRACT_SHIFT = 12.0
 FONT = resolve_font()
 
@@ -81,7 +86,8 @@ def main() -> None:
     shutil.copy2(SRC, OUT)
     doc = fitz.open(OUT)
     page = doc[0]
-    font = fitz.Font(fontfile=FONT)
+    font = fitz.Font(fontfile=str(FONT))
+    print("Using font:", FONT)
 
     BOX_EXTRACT = fitz.Rect(127.96, 255.65, 165.01, 265.9)
     BOX_AMOUNT_ORIG = fitz.Rect(459.7, 367.36, 483.07, 377.62)
@@ -310,7 +316,7 @@ def main() -> None:
     page.insert_text(
         fitz.Point(562.59 - fw, 488.2),
         footer,
-        fontfile=FONT,
+        fontfile=str(FONT),
         fontsize=FS,
         color=(0, 0, 0),
         overlay=True,
