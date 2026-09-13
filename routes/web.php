@@ -1,8 +1,14 @@
 <?php
 
+use App\Http\Controllers\CertificateDashboardController;
+use App\Support\CertificateSettings;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'certificates.clearance-web')->name('home');
+Route::get('/', function () {
+    return view('certificates.clearance-web', [
+        'certificate' => CertificateSettings::all(),
+    ]);
+})->name('home');
 
 Route::view('/sample/certificate', 'certificates.clearance-sample')
     ->name('sample.certificate');
@@ -18,8 +24,9 @@ Route::get('/sample/certificate.pdf', function () {
     ]);
 })->name('sample.certificate.pdf');
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::inertia('dashboard', 'Dashboard')->name('dashboard');
+Route::middleware(['auth'])->group(function () {
+    Route::get('dashboard', [CertificateDashboardController::class, 'edit'])->name('dashboard');
+    Route::put('dashboard', [CertificateDashboardController::class, 'update'])->name('dashboard.update');
 });
 
 require __DIR__.'/settings.php';
