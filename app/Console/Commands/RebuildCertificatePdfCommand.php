@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Services\CertificatePdfBuilder;
+use App\Support\CertificateSettings;
 use Illuminate\Console\Command;
 
 class RebuildCertificatePdfCommand extends Command
@@ -13,17 +14,15 @@ class RebuildCertificatePdfCommand extends Command
 
     public function handle(CertificatePdfBuilder $builder): int
     {
-        $this->info('Rebuilding certificate PDF...');
-        $result = $builder->rebuild();
+        $failed = false;
 
-        if ($result['ok']) {
-            $this->info($result['message']);
-
-            return self::SUCCESS;
+        foreach (CertificateSettings::codes() as $code) {
+            $this->info('Rebuilding '.$code.'...');
+            $result = $builder->rebuild($code);
+            $result['ok'] ? $this->info($result['message']) : $this->error($result['message']);
+            $failed = $failed || ! $result['ok'];
         }
 
-        $this->error($result['message']);
-
-        return self::FAILURE;
+        return $failed ? self::FAILURE : self::SUCCESS;
     }
 }

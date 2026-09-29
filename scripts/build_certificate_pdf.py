@@ -78,13 +78,15 @@ def build_qr(url: str) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--settings", required=True)
+    parser.add_argument("--output", default="")
     args = parser.parse_args()
     s = load_settings(Path(args.settings))
+    output = Path(args.output) if args.output else OUT
 
-    build_qr(s.get("qr_url", "https://inform.menpowerr-eg.co/"))
+    build_qr(s.get("qr_url", "https://inform.menpowerr-eg.co/19028001"))
 
-    shutil.copy2(SRC, OUT)
-    doc = fitz.open(OUT)
+    shutil.copy2(SRC, output)
+    doc = fitz.open(output)
     page = doc[0]
     font = fitz.Font(fontfile=str(FONT))
     print("Using font:", FONT)
@@ -236,7 +238,7 @@ def main() -> None:
     text, chars = find_line(lambda t: "كود العملية" in t and "335844" in t)
     for old, new in [
         ("335844", s["ministry_code"]),
-        ("1489218", s["extract_code"]),
+        ("1489218", s.get("clearance_number", "2253461")),
         ("a18a7f495c", s["password"]),
     ]:
         r, y, _ = sub_bbox(text, chars, old)
@@ -322,12 +324,12 @@ def main() -> None:
         overlay=True,
     )
 
-    tmp = OUT.with_suffix(".new.pdf")
+    tmp = output.with_suffix(".new.pdf")
     doc.save(tmp, garbage=4, deflate=True)
     doc.close()
-    shutil.move(tmp, OUT)
+    shutil.move(tmp, output)
     mid.unlink(missing_ok=True)
-    print("OK", OUT)
+    print("OK", output)
 
 
 if __name__ == "__main__":

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Support\CertificateSettings;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\Process\Process;
 
@@ -11,13 +12,13 @@ class CertificatePdfBuilder
     /**
      * @return array{ok: bool, message: string}
      */
-    public function rebuild(): array
+    public function rebuild(string $code): array
     {
         $python = $this->pythonBinary();
         $script = base_path('scripts/build_certificate_pdf.py');
-        $settingsPath = CertificateSettings::path();
         $sourcePath = storage_path('app/sample-ref/source.pdf');
-        $outputPath = public_path('certificates/sample-clearance.pdf');
+        $outputPath = CertificateSettings::pdfPath($code);
+        $settingsPath = CertificateSettings::file($code);
 
         if ($python === null) {
             return [
@@ -40,6 +41,13 @@ class CertificatePdfBuilder
             ];
         }
 
+        if (! is_file($settingsPath)) {
+            return [
+                'ok' => false,
+                'message' => 'بيانات الصفحة غير موجودة.',
+            ];
+        }
+
         if (! is_dir(dirname($outputPath)) || ! is_writable(dirname($outputPath))) {
             return [
                 'ok' => false,
@@ -47,13 +55,17 @@ class CertificatePdfBuilder
             ];
         }
 
-        $before = is_file($outputPath) ? filemtime($outputPath) : 0;
+        CertificateSettings::update($code, [
+            'qr_url' => CertificateSettings::publicUrl($code),
+        ]);
 
         $process = new Process([
             $python,
             $script,
             '--settings',
             $settingsPath,
+            '--output',
+            $outputPath,
         ], base_path(), [
             'PATH' => getenv('PATH') ?: '/usr/local/bin:/usr/bin:/bin',
             'HOME' => sys_get_temp_dir(),
@@ -68,6 +80,7 @@ class CertificatePdfBuilder
         if (! $process->isSuccessful()) {
             Log::error('Certificate PDF rebuild failed', [
                 'python' => $python,
+                'code' => $code,
                 'output' => $details,
             ]);
 
@@ -80,18 +93,21 @@ class CertificatePdfBuilder
         }
 
         clearstatcache(true, $outputPath);
-        $after = is_file($outputPath) ? filemtime($outputPath) : 0;
 
-        if ($after <= $before) {
+        if (! is_file($outputPath)) {
             return [
                 'ok' => false,
-                'message' => 'سكربت الـ PDF اشتغل لكن الملف لم يتحدث. تحقق من صلاحيات public/certificates.',
+                'message' => 'سكربت الـ PDF اشتغل لكن الملف لم يُنشأ. تحقق من صلاحيات public/certificates.',
             ];
+        }
+
+        if ($code === CertificateSettings::DEFAULT_CODE) {
+            File::copy($outputPath, public_path('certificates/sample-clearance.pdf'));
         }
 
         return [
             'ok' => true,
-            'message' => 'تم تحديث الصفحة الرئيسية وملف الـ PDF بنجاح.',
+            'message' => 'تم تحديث الصفحة /'.$code.' وملف الـ PDF بنجاح.',
         ];
     }
 

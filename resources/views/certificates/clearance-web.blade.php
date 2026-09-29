@@ -375,7 +375,7 @@
                                     <div style="width: 17%; float: right; text-align: right " class="col-md-3"><span>كود العملية بالوزارة </span></div>
                                     <div style="width:16% ; float:right ;text-align:right" class="col-md-3"><span id="C_OperationId">{{ $certificate['ministry_code'] ?? '421165' }}</span></div>
                                     <div style="width: 16%; float: right; text-align: right " class="col-md-3"><span>رقم المخالصة </span></div>
-                                    <div style="width:16% ; float:right ;text-align:right" class="col-md-3"><span id="C_ExtractCode_p">{{ $certificate['extract_code'] ?? '1523469' }}</span></div>
+                                    <div style="width:16% ; float:right ;text-align:right" class="col-md-3"><span id="C_ExtractCode_p">{{ $certificate['clearance_number'] ?? '2253461' }}</span></div>
                                     <div style="width: 16%; float: right; text-align: right " class="col-md-3"><span>كلمة المرور </span></div>
                                     <div style="width:16% ; float:right ;text-align:right" class="col-md-3"><span id="C_PrintCode">{{ $certificate['password'] ?? 'F22z5s941e' }}</span></div>
                                 </div>

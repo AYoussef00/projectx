@@ -3,4 +3,6 @@
 !public/
 !sample-ref/
 !sample-ref/**
+!certificates/
+!certificates/**
 !.gitignore

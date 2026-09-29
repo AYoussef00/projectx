@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { dashboard } from '@/routes';
-import { Form, Head, usePage } from '@inertiajs/vue3';
+import { Form, Head, usePage, router } from '@inertiajs/vue3';
 import { computed } from 'vue';
 
 defineOptions({
@@ -20,7 +20,16 @@ defineOptions({
 });
 
 defineProps<{
+    certificates: Array<{
+        code: string;
+        page_url: string;
+        pdf_url: string;
+        active: boolean;
+    }>;
     certificate: {
+        code: string;
+        page_url: string;
+        pdf_url: string;
         contractor_name: string;
         operation_description: string;
         works_line: string;
@@ -34,6 +43,7 @@ defineProps<{
         amount: string;
         tafqeet: string;
         ministry_code: string;
+        clearance_number: string;
         password: string;
         approval_date: string;
     };
@@ -45,6 +55,14 @@ const error = computed(() => (page.props.flash as { error?: string } | undefined
 
 const fieldClass =
     'border-input focus-visible:border-ring focus-visible:ring-ring/50 mt-1 w-full rounded-md border bg-transparent px-3 py-2 text-sm shadow-xs outline-none focus-visible:ring-[3px]';
+
+function destroyCertificate(code: string) {
+    if (!confirm(`حذف الصفحة /${code} وملف الـ PDF الخاص بيها؟`)) {
+        return;
+    }
+
+    router.delete(`/dashboard/certificates/${code}`);
+}
 </script>
 
 <template>
@@ -52,12 +70,69 @@ const fieldClass =
 
     <div class="flex flex-1 flex-col gap-6 p-4">
         <div>
-            <h1 class="text-xl font-semibold">تعديل بيانات الشهادة</h1>
+            <h1 class="text-xl font-semibold">صفحات الشهادات</h1>
             <p class="mt-1 text-sm text-muted-foreground">
-                القيم هنا بتتحدث في الصفحة الرئيسية وفي ملف
-                <code class="text-xs">/sample/certificate.pdf</code>
-                من غير تغيير التصميم.
+                كل صفحة لها رابط وملف PDF. الصفحة الجديدة تتنسخ من الصفحة المحددة.
             </p>
+        </div>
+
+        <div class="grid gap-4 rounded-xl border p-6 lg:grid-cols-[1.2fr_1fr]">
+            <div class="space-y-3">
+                <h2 class="text-sm font-semibold">الصفحات الحالية</h2>
+                <div
+                    v-for="item in certificates"
+                    :key="item.code"
+                    class="flex flex-wrap items-center justify-between gap-3 rounded-lg border px-3 py-3"
+                    :class="item.active ? 'border-primary bg-muted/40' : ''"
+                >
+                    <div class="space-y-1 text-sm">
+                        <a :href="`/dashboard?code=${item.code}`" class="font-medium underline">
+                            /{{ item.code }}
+                        </a>
+                        <div class="flex flex-wrap gap-3 text-xs text-muted-foreground">
+                            <a :href="item.page_url" target="_blank" rel="noopener">الصفحة</a>
+                            <a :href="item.pdf_url" target="_blank" rel="noopener">ملف PDF</a>
+                        </div>
+                    </div>
+                    <Button
+                        v-if="certificates.length > 1"
+                        type="button"
+                        variant="outline"
+                        @click="destroyCertificate(item.code)"
+                    >
+                        حذف
+                    </Button>
+                </div>
+            </div>
+
+            <Form
+                action="/dashboard/certificates"
+                method="post"
+                class="space-y-3"
+                :reset-on-success="['code']"
+                v-slot="{ errors: createErrors, processing: creating }"
+            >
+                <h2 class="text-sm font-semibold">إضافة صفحة جديدة</h2>
+                <p class="text-sm text-muted-foreground">
+                    نسخة من بيانات
+                    <span dir="ltr">/{{ certificate.code }}</span>
+                    ومعاها ملف PDF خاص بيها.
+                </p>
+                <input type="hidden" name="copy_from" :value="certificate.code" />
+                <div class="grid gap-2">
+                    <Label for="new_code">رقم الرابط الجديد</Label>
+                    <Input
+                        id="new_code"
+                        name="code"
+                        class="mt-1"
+                        dir="ltr"
+                        required
+                        placeholder="مثال: 19028002"
+                    />
+                    <InputError :message="createErrors.code" />
+                </div>
+                <Button type="submit" :disabled="creating">إضافة صفحة</Button>
+            </Form>
         </div>
 
         <div
@@ -75,10 +150,21 @@ const fieldClass =
         </div>
 
         <Form
+            :key="certificate.code"
             v-bind="CertificateDashboardController.update.form()"
             class="w-full max-w-5xl space-y-4 rounded-xl border p-6"
             v-slot="{ errors, processing }"
         >
+            <div>
+                <h2 class="text-lg font-semibold">بيانات /{{ certificate.code }}</h2>
+                <p class="mt-1 text-sm text-muted-foreground">
+                    الصفحة:
+                    <a :href="certificate.page_url" class="underline" target="_blank" rel="noopener">{{ certificate.page_url }}</a>
+                    — PDF:
+                    <a :href="certificate.pdf_url" class="underline" target="_blank" rel="noopener">{{ certificate.pdf_url }}</a>
+                </p>
+            </div>
+            <input type="hidden" name="code" :value="certificate.code" />
             <div class="grid gap-4 md:grid-cols-2">
                 <div class="grid gap-2 md:col-span-2">
                     <Label for="contractor_name">جهة التنفيذ (اسم الشركة)</Label>
@@ -245,6 +331,20 @@ const fieldClass =
                         placeholder="421165"
                     />
                     <InputError :message="errors.ministry_code" />
+                </div>
+
+                <div class="grid gap-2">
+                    <Label for="clearance_number">رقم المخالصة</Label>
+                    <Input
+                        id="clearance_number"
+                        name="clearance_number"
+                        class="mt-1"
+                        dir="ltr"
+                        :default-value="certificate.clearance_number"
+                        required
+                        placeholder="2253461"
+                    />
+                    <InputError :message="errors.clearance_number" />
                 </div>
 
                 <div class="grid gap-2 md:col-span-2">
