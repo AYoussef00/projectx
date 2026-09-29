@@ -314,7 +314,7 @@
                                     </div>
                                     <div style="width:25% ; float:right ;text-align:right" class="col-md-3">
                                         <div><span id="C_OperationWorks">{{ trim(($certificate['works_label'] ?? 'اعمال/').' '.($certificate['works_code'] ?? '15740')) }}</span></div>
-                                        <div><span id="C_OperationCode">{{ $certificate['contract_number'] ?? '261008004796' }}</span></div>
+                                        <div><span id="C_OperationCode">{{ $certificate['contract_number'] ?? '' }}</span></div>
                                     </div>
                                     <div style="width: 25%; float: right; text-align: right " class="col-md-3"><span>بقيمة اجمالية</span></div>
                                     <div style="width:25% ; float:right ;text-align:right" class="col-md-3"><span id="C_TotalContractValue"></span></div>

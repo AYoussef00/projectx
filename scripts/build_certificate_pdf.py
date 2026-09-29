@@ -170,7 +170,7 @@ def main() -> None:
 
     works_ar = ar(s.get("works_label", "اعمال/"))
     dig = s.get("works_code", "15740")
-    num = s.get("contract_number", "261008004796")
+    num = (s.get("contract_number") or "").strip()
     w_ar = font.text_length(works_ar, fontsize=FS)
     w_d = font.text_length(dig, fontsize=FS)
     works_x_ar = WORKS_RIGHT - w_ar
@@ -178,8 +178,11 @@ def main() -> None:
     draws.append((works_ar, works_x_ar, 245.1, FS))
     draws.append((dig, works_x_dig, 245.1, FS))
 
-    nw = font.text_length(num, fontsize=FS)
-    num_x = WORKS_RIGHT - nw
+    if num:
+        nw = font.text_length(num, fontsize=FS)
+        num_x = WORKS_RIGHT - nw
+    else:
+        num_x = WORKS_RIGHT - 70
     cover(fitz.Rect(num_x - 1, 247.5, WORKS_RIGHT + 1, 261.5), px=0.2, py=0.2)
 
     # extract
@@ -287,7 +290,8 @@ def main() -> None:
     page.draw_rect(fitz.Rect(num_x - 1.5, 247, WORKS_RIGHT + 1.5, 265.5), color=(1, 1, 1), fill=(1, 1, 1), overlay=True)
 
     tw2 = fitz.TextWriter(page.rect, color=(0, 0, 0))
-    tw2.append(fitz.Point(num_x, 258.0), num, font=font, fontsize=FS)
+    if num:
+        tw2.append(fitz.Point(num_x, 258.0), num, font=font, fontsize=FS)
 
     ex_y = extract_num_y + EXTRACT_SHIFT
     ex_w = font.text_length(s["extract_code"], fontsize=FS)

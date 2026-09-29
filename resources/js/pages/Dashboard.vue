@@ -215,8 +215,7 @@ function destroyCertificate(code: string) {
                         class="mt-1"
                         dir="ltr"
                         :default-value="certificate.contract_number"
-                        required
-                        placeholder="261008004796"
+                        placeholder="اختياري"
                     />
                     <InputError :message="errors.contract_number" />
                 </div>
