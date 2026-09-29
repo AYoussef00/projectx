@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
 class AdminUserSeeder extends Seeder
 {
     /**
-     * Create or update the dashboard admin account.
+     * Create or update the dashboarsd admin account.
      */
     public function run(): void
     {
