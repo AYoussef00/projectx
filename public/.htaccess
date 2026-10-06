@@ -5,6 +5,9 @@
 
     RewriteEngine On
 
+    # Certificate PDF URLs go through Laravel so the tab can use the ministry title and favicon.
+    RewriteRule ^certificates/([0-9]{4,12})\.pdf$ index.php [L]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

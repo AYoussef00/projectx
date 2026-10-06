@@ -48,10 +48,12 @@ class CertificatePdfBuilder
             ];
         }
 
+        File::ensureDirectoryExists(dirname($outputPath));
+
         if (! is_dir(dirname($outputPath)) || ! is_writable(dirname($outputPath))) {
             return [
                 'ok' => false,
-                'message' => 'مجلد public/certificates غير قابل للكتابة لمستخدم الويب (www-data).',
+                'message' => 'مجلد تخزين ملفات الـ PDF غير قابل للكتابة لمستخدم الويب (www-data).',
             ];
         }
 
@@ -97,7 +99,7 @@ class CertificatePdfBuilder
         if (! is_file($outputPath)) {
             return [
                 'ok' => false,
-                'message' => 'سكربت الـ PDF اشتغل لكن الملف لم يُنشأ. تحقق من صلاحيات public/certificates.',
+                'message' => 'سكربت الـ PDF اشتغل لكن الملف لم يُنشأ. تحقق من صلاحيات storage/app/certificates.',
             ];
         }
 

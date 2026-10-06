@@ -25,7 +25,18 @@ class CertificateSettings
 
     public static function pdfPath(string $code): string
     {
-        return public_path('certificates/'.$code.'.pdf');
+        return storage_path('app/certificates/'.$code.'.pdf');
+    }
+
+    public static function resolvedPdfPath(string $code): ?string
+    {
+        foreach ([self::pdfPath($code), public_path('certificates/'.$code.'.pdf')] as $path) {
+            if (is_file($path)) {
+                return $path;
+            }
+        }
+
+        return null;
     }
 
     public static function qrPath(string $code): string

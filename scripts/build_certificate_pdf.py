@@ -337,6 +337,13 @@ def main() -> None:
         overlay=True,
     )
 
+    doc.set_metadata({
+        "title": "وزارة العمل",
+        "author": "وزارة العمل",
+        "subject": "وزارة العمل",
+        "creator": "وزارة العمل",
+    })
+
     tmp = output.with_suffix(".new.pdf")
     doc.save(tmp, garbage=4, deflate=True)
     doc.close()

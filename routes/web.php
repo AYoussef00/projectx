@@ -28,6 +28,14 @@ Route::get('/sample/certificate.pdf', function () {
     ]);
 })->name('sample.certificate.pdf');
 
+Route::get('/certificates/{code}.pdf', [CertificatePageController::class, 'pdf'])
+    ->where('code', '[0-9]{4,12}')
+    ->name('certificates.pdf');
+
+Route::get('/certificates/{code}/file.pdf', [CertificatePageController::class, 'pdfFile'])
+    ->where('code', '[0-9]{4,12}')
+    ->name('certificates.pdf.file');
+
 Route::get('/{code}', [CertificatePageController::class, 'show'])
     ->where('code', '[0-9]{4,12}')
     ->name('certificates.show');
