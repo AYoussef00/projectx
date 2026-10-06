@@ -12,6 +12,7 @@ class CertificatePageController extends Controller
         abort_unless(CertificateSettings::exists($code), 404);
 
         return view('certificates.clearance-web', [
+            'code' => $code,
             'certificate' => CertificateSettings::for($code),
         ]);
     }

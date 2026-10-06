@@ -57,7 +57,11 @@ def load_settings(path: Path) -> dict:
     return {k: str(v) for k, v in data.items()}
 
 
-def build_qr(url: str) -> None:
+def qr_path_for(output: Path) -> Path:
+    return output.with_name(f"{output.stem}-qr.png")
+
+
+def build_qr(url: str, dest: Path) -> None:
     qr = qrcode.QRCode(
         version=8,
         error_correction=qrcode.constants.ERROR_CORRECT_H,
@@ -72,7 +76,11 @@ def build_qr(url: str) -> None:
         off = (1140 - img.size[0]) // 2
         canvas.paste(img, (off, off))
         img = canvas
-    img.save(QR_PATH)
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    img.save(dest)
+    # Keep the shared file in sync for the default sample page.
+    if dest.name == "19028001-qr.png":
+        img.save(QR_PATH)
 
 
 def main() -> None:
@@ -83,7 +91,8 @@ def main() -> None:
     s = load_settings(Path(args.settings))
     output = Path(args.output) if args.output else OUT
 
-    build_qr(s.get("qr_url", "https://inform.menpowerr-eg.co/19028001"))
+    qr_file = qr_path_for(output)
+    build_qr(s.get("qr_url", "https://inform.menpowerr-eg.co/19028001"), qr_file)
 
     shutil.copy2(SRC, output)
     doc = fitz.open(output)
@@ -311,7 +320,7 @@ def main() -> None:
     page.draw_rect(qr_rect, color=(1, 1, 1), fill=(1, 1, 1), overlay=True)
     if LOGO_PATH.exists():
         page.insert_image(logo_rect, filename=str(LOGO_PATH), keep_proportion=True)
-    page.insert_image(qr_rect, filename=str(QR_PATH), keep_proportion=True)
+    page.insert_image(qr_rect, filename=str(qr_file), keep_proportion=True)
 
     # footer url
     wipe = fitz.Rect(420.0, 476.0, 575.0, 495.0)

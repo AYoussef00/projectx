@@ -28,6 +28,11 @@ class CertificateSettings
         return public_path('certificates/'.$code.'.pdf');
     }
 
+    public static function qrPath(string $code): string
+    {
+        return public_path('certificates/'.$code.'-qr.png');
+    }
+
     /**
      * @return array<string, string>
      */
@@ -174,6 +179,7 @@ class CertificateSettings
         self::writeIndex($codes);
         File::delete(self::file($code));
         File::delete(self::pdfPath($code));
+        File::delete(self::qrPath($code));
     }
 
     public static function publicUrl(string $code): string

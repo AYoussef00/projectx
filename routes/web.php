@@ -6,8 +6,11 @@ use App\Support\CertificateSettings;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    $code = CertificateSettings::defaultCode();
+
     return view('certificates.clearance-web', [
-        'certificate' => CertificateSettings::for(CertificateSettings::defaultCode()),
+        'code' => $code,
+        'certificate' => CertificateSettings::for($code),
     ]);
 })->name('home');
 

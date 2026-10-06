@@ -103,6 +103,10 @@ class CertificatePdfBuilder
 
         if ($code === CertificateSettings::DEFAULT_CODE) {
             File::copy($outputPath, public_path('certificates/sample-clearance.pdf'));
+            $qrPath = CertificateSettings::qrPath($code);
+            if (is_file($qrPath)) {
+                File::copy($qrPath, public_path('certificates/qr.png'));
+            }
         }
 
         return [
